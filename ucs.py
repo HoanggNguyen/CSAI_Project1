@@ -87,12 +87,10 @@ def ucs_search(grid, start_pos, stones, switches):
                         #Kiểm tra xem trong tập PQ có chứa 2 giá trị giống nhau không
                         if new_ares_pos == ares_in_tup and stones_in_tup == tuple(stones):
                             #Nếu có, ưu tiên chi phí thấp hơn
-                            if cost + 1 == cost_in_tup:
-                                check = False
-                            elif cost + 1 < cost_in_tup:
+                            if cost + 1 < cost_in_tup:
                                 PQ.remove((cost_in_tup,ares_in_tup, stones_in_tup, path_in_tup))
                                 PQ.append((cost + 1, ares_in_tup, stones_in_tup, new_path))
-                                check = False
+                            check = False
                             break
                     if check:
                         PQ.append((cost + 1, new_ares_pos, tuple(stones), new_path))
@@ -126,12 +124,10 @@ def ucs_search(grid, start_pos, stones, switches):
                             #Kiểm tra xem trong tập PQ có chứa 2 giá trị giống nhau không
                             if new_ares_pos == ares_in_tup and stones_in_tup == tuple(new_stones):
                                 #Nếu có, ưu tiên chi phí thấp hơn
-                                if cost + weight + 1 == cost_in_tup:
-                                    check = False
-                                elif cost + weight + 1 < cost_in_tup:
+                                if cost + weight + 1 < cost_in_tup:
                                     PQ.remove((cost_in_tup, ares_in_tup, stones_in_tup, path_in_tup))
                                     PQ.append((cost + weight + 1, ares_in_tup, stones_in_tup, new_path))
-                                    check = False
+                                check = False
                                 break
                         if check:
                             PQ.append((cost+weight+1, new_ares_pos, tuple(new_stones), new_path))
