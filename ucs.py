@@ -22,7 +22,7 @@ def createMatrix(file_name):
 def get_inf_in_grid(grid, weights):
     ares_position = None
     stones = []
-    switches = set()
+    switches = []
     indx_weight = 0
 
     for r, row in enumerate(grid):
@@ -31,16 +31,16 @@ def get_inf_in_grid(grid, weights):
                 ares_position = (r, c)
             elif char == '+':
                 ares_position = (r, c)
-                switches.add((r, c))
+                switches.append((r, c))
             elif char == '$':
                 stones.append((r,c,weights[indx_weight]))
                 indx_weight += 1
             elif char == '*':
                 stones.append((r,c,weights[indx_weight]))
                 indx_weight += 1
-                switches.add((r, c))
+                switches.append((r, c))
             elif char == '.':
-                switches.add((r, c))
+                switches.append((r, c))
     return ares_position, stones, switches
     
 def can_move(pos, grid):
@@ -56,7 +56,7 @@ def ucs_search(grid, start_pos, stones, switches):
     visited = set()
 
     #Đếm số node
-    node_count = 0
+    node_count = 1
 
     while len(PQ):
         cost, ares_pos, stones, path = PQ.pop(0)
