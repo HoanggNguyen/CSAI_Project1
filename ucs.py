@@ -60,11 +60,6 @@ def ucs_search(grid, start_pos, stones, switches):
 
     while len(PQ):
         cost, ares_pos, stones, path = PQ.pop(0)
-        if (3,10,15) in stones or (3,10,1) in stones or (4,10,1) in stones or (4,10,15) in stones:
-            with open("output.txt", 'a') as file:
-                file.write(f'{ares_pos}\n')
-                file.write(f'{stones}\n')
-                file.write(f'{path}\n')
         stones = list(stones)
         if all(stone[:2] in switches for stone in stones):
             return cost, path, node_count
