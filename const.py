@@ -4,7 +4,7 @@
 BOUND = 15
 A = 40  # Kích thước của mỗi ô
 A1 = 1  # Khoảng cách giữa các ô
-
+update_rate = 10 # thời gian update màn hình 
 
 # Khởi tạo các biến với giá trị mặc định
 # Hàm cập nhật các giá trị COLS và ROWS

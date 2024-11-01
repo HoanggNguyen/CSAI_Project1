@@ -65,17 +65,32 @@ def main():
 
     WIDTH, HEIGHT = sc.get_size()
     # Main code snippet (inside your game loop)
+    speed = 1
     current_step = 0
+<<<<<<< Updated upstream
     while True:
         sc.fill(pygame.Color('black'))
         g.draw(sc)
 
         # Display info
+=======
+    current_screen = None
+    running_menu = False
+    running_game = True
+    sc.fill(pygame.Color('black'))
+    
+    g.draw(sc)
+
+    # Display info
+    draw_info(sc, step_count, timespent)
+    
+    # Draw buttons
+    draw_buttons(sc)
+    
+    while running_game:
+        speed = handle_buttons(sc, speed)
+>>>>>>> Stashed changes
         draw_info(sc, step_count, timespent)
-
-        # Draw buttons
-        draw_buttons(sc)
-
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
@@ -108,16 +123,62 @@ def main():
                     elif HEIGHT - 60 <= y <= HEIGHT - 60 + BUTTON_HEIGHT:
                         paused = True
 
+<<<<<<< Updated upstream
+=======
+                    #Back to home (orange)
+                    elif 15 <= y <= 15 + BUTTON_HEIGHT:
+                        current_screen = "algorithm"
+                        running = False
+                        running_menu = True
+                        running_game = False
+            
+                g.draw(sc)
+>>>>>>> Stashed changes
 
+                # Display info
+                #draw_info(sc, step_count, timespent)
+                draw_buttons(sc)
         if running and not paused:
             if current_step < len(steps):
                 g.update_maze_step(steps[current_step], sc)
                 pygame.display.flip()
                 step_count += 1
                 current_step += 1
-                pygame.time.delay(200)
+                pygame.time.delay(int(500 / speed))
+                
+                if event.type == pygame.QUIT:  # Check for close button press
+                    running = False
             else:
                 running = False
+<<<<<<< Updated upstream
+=======
+    
+    return current_screen, running_menu
+def main():
+    pygame.init()
+    pygame.event.get()
+    pygame.display.set_caption("Ares's Adventure")     
+    current_screen = "test_case"
+
+    running = True
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:  # Check for close button press
+                running = False
+
+        sc = pygame.display.set_mode((800, 600), pygame.RESIZABLE)
+        sc.fill(pygame.color.Color(ASH_GRAY))
+
+        if current_screen == "test_case":
+            test_case, current_screen, running = testcase_selection_screen(sc)
+        elif current_screen == "algorithm":
+            algo, current_screen, running = algorithm_selection_screen(sc)
+        elif current_screen == "game":
+            current_screen, running = game_screen(test_case, algo)
+            
+
+    
+>>>>>>> Stashed changes
 
 if __name__ == '__main__':
     main()

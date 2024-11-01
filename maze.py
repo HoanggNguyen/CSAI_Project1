@@ -260,25 +260,77 @@ def draw_info(screen, step_count, start_time):
     #screen.blit(weight_text, (10, HEIGHT - 50))
     screen.blit(time_text, (10, HEIGHT - 70))
 
+# def draw_buttons(screen):
+#     WIDTH, HEIGHT = screen.get_size()
+#     BUTTON_WIDTH, BUTTON_HEIGHT = 100, 30
+#     BUTTON_X = WIDTH - BUTTON_WIDTH - 20  # Right margin
+
+#     # Button Y positions
+#     home_y = 15
+#     run_all_y = HEIGHT - 180
+#     restart_y = HEIGHT - 140
+#     next_step_y = HEIGHT - 100
+#     pause_y = HEIGHT - 60
+
+#     # Define button colors and labels
+#     button_info = [
+#         {"color": "orange", "label": "Home", "y": home_y},
+#         {"color": "green", "label": "Run All", "y": run_all_y},
+#         {"color": "pink", "label": "Restart", "y": restart_y},
+#         {"color": "yellow", "label": "Next Step", "y": next_step_y},
+#         {"color": "red", "label": "Pause", "y": pause_y}
+#     ]
+
+#     # Font for button labels
+#     font = pygame.font.Font(None, 24)  # Adjust font size as needed
+
+#     for button in button_info:
+#         # Draw button rectangle
+#         pygame.draw.rect(screen, pygame.Color(button["color"]), (BUTTON_X, button["y"], BUTTON_WIDTH, BUTTON_HEIGHT))
+
+#         # Render text and calculate position to center it on the button
+#         text = font.render(button["label"], True, pygame.Color('black'))
+#         text_rect = text.get_rect(center=(BUTTON_X + BUTTON_WIDTH // 2, button["y"] + BUTTON_HEIGHT // 2))
+
+#         # Blit text onto the button
+#         screen.blit(text, text_rect)
+
+#     # Update the display
+#     pygame.display.flip()
+#     pygame.time.delay(10)
+
 def draw_buttons(screen):
     WIDTH, HEIGHT = screen.get_size()
     BUTTON_WIDTH, BUTTON_HEIGHT = 100, 30
     BUTTON_X = WIDTH - BUTTON_WIDTH - 20  # Right margin
 
     # Button Y positions
+<<<<<<< Updated upstream
     run_all_y = HEIGHT - 140
+=======
+    home_y = 15
+    speed_up_y = home_y + BUTTON_HEIGHT + 10  # Place Speed up button below Home
+
+    run_all_y = HEIGHT - 180
+    restart_y = HEIGHT - 140
+>>>>>>> Stashed changes
     next_step_y = HEIGHT - 100
     pause_y = HEIGHT - 60
 
     # Define button colors and labels
     button_info = [
+<<<<<<< Updated upstream
+=======
+        {"color": "orange", "label": "Home", "y": home_y},
+        {"color": "blue", "label": "Speed up", "y": speed_up_y},  # New Speed up button
+>>>>>>> Stashed changes
         {"color": "green", "label": "Run All", "y": run_all_y},
         {"color": "yellow", "label": "Next Step", "y": next_step_y},
         {"color": "red", "label": "Pause", "y": pause_y},
     ]
 
     # Font for button labels
-    font = pygame.font.Font(None, 24)  # Adjust font size as needed
+    font = pygame.font.Font(None, 24)
 
     for button in button_info:
         # Draw button rectangle
@@ -293,7 +345,28 @@ def draw_buttons(screen):
 
     # Update the display
     pygame.display.flip()
-    pygame.time.delay(200)
+
+
+# Hàm xử lý sự kiện cho các nút và trả về speed mới
+def handle_buttons(screen, speed):
+    WIDTH, HEIGHT = screen.get_size()
+    BUTTON_WIDTH, BUTTON_HEIGHT = 100, 30
+    BUTTON_X = WIDTH - BUTTON_WIDTH - 20  # Right margin
+    speed_up_y = 15 + BUTTON_HEIGHT + 10  # "Speed up" button Y position
+
+    # Lắng nghe sự kiện nút nhấn
+    for event in pygame.event.get():
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            x, y = event.pos
+            # Kiểm tra nút "Speed up" có được nhấn không
+            if BUTTON_X <= x <= BUTTON_X + BUTTON_WIDTH and speed_up_y <= y <= speed_up_y + BUTTON_HEIGHT:
+                speed += 1  # Tăng giá trị speed lên mỗi khi nhấn nút
+
+    # Gọi hàm draw_buttons và trả về giá trị speed mới
+    draw_buttons(screen)
+    return speed
+
+
 
 
 # Global stop signal for the loading screen
