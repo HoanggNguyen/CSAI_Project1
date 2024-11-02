@@ -1,0 +1,6 @@
+BFS
+Steps: 13, Weight: 40, Node: 6978, Time (ms): 3002.79, Memory (MB): 2.00
+lDldRulluRRRR
+UCS
+Steps: 13, Weight: 40, Node: 10314, Time (ms): 3002.70, Memory (MB): 2.00
+lDldRluluRRRR

@@ -1,0 +1,11 @@
+BFS
+Steps: 54, Weight: 1005, Node: 12063909, Time (ms): 301200.49, Memory (MB): 3494.09
+luuulldDuRRRRRRdrUUdddlDrdLLLLLddlllluuuurRRRldDDrdLLL
+DFS
+No solution found
+UCS
+Steps: 59, Weight: 782, Node: 6778860, Time (ms): 281087.29, Memory (MB): 1791.99
+luuulDDDDDDrdLLLrruurrrrrUUUdllllululDulllddrrRRRuurrrRdrUU
+ASTAR
+Steps: 59, Weight: 782, Node: 736376, Time (ms): 30538.56, Memory (MB): 367.00
+luuulDDDDDDrdLLLruurrrrrrUUUdlllluullDulllddrrRRRuurrrRdrUU
