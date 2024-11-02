@@ -1,4 +1,2 @@
-BFS
-No solution found
-BFS
+DFS
 No solution found

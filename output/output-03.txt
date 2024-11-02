@@ -1,0 +1,54 @@
+ASTAR
+Steps: 31, Weight: 76, Node: 176431, Time (ms): 3014.27, Memory (MB): 44.02
+rrdrdrUlldLLLLLLuluRRurDrrruLLL
+ASTAR
+Steps: 31, Weight: 76, Node: 176431, Time (ms): 3014.24, Memory (MB): 44.21
+rrdrdrUlldLLLLLLuluRRurDrrruLLL
+ASTAR
+Steps: 31, Weight: 76, Node: 176431, Time (ms): 3014.05, Memory (MB): 44.25
+rrdrdrUlldLLLLLLuluRRurDrrruLLL
+ASTAR
+Steps: 31, Weight: 76, Node: 176431, Time (ms): 3011.34, Memory (MB): 44.00
+rrdrdrUlldLLLLLLuluRRurDrrruLLL
+ASTAR
+Steps: 31, Weight: 76, Node: 176431, Time (ms): 3013.55, Memory (MB): 44.05
+rrdrdrUlldLLLLLLuluRRurDrrruLLL
+ASTAR
+Steps: 31, Weight: 76, Node: 176431, Time (ms): 3013.19, Memory (MB): 43.43
+rrdrdrUlldLLLLLLuluRRurDrrruLLL
+ASTAR
+Steps: 31, Weight: 76, Node: 176431, Time (ms): 3017.54, Memory (MB): 43.61
+rrdrdrUlldLLLLLLuluRRurDrrruLLL
+ASTAR
+Steps: 31, Weight: 76, Node: 176431, Time (ms): 3014.48, Memory (MB): 43.54
+rrdrdrUlldLLLLLLuluRRurDrrruLLL
+ASTAR
+Steps: 31, Weight: 76, Node: 176431, Time (ms): 3014.45, Memory (MB): 43.36
+rrdrdrUlldLLLLLLuluRRurDrrruLLL
+ASTAR
+Steps: 31, Weight: 76, Node: 176431, Time (ms): 3015.22, Memory (MB): 43.75
+rrdrdrUlldLLLLLLuluRRurDrrruLLL
+ASTAR
+Steps: 31, Weight: 76, Node: 176431, Time (ms): 3017.11, Memory (MB): 43.90
+rrdrdrUlldLLLLLLuluRRurDrrruLLL
+ASTAR
+Steps: 31, Weight: 76, Node: 176431, Time (ms): 3012.27, Memory (MB): 44.04
+rrdrdrUlldLLLLLLuluRRurDrrruLLL
+ASTAR
+Steps: 31, Weight: 76, Node: 176431, Time (ms): 3013.23, Memory (MB): 43.87
+rrdrdrUlldLLLLLLuluRRurDrrruLLL
+ASTAR
+Steps: 31, Weight: 76, Node: 176431, Time (ms): 3014.17, Memory (MB): 44.35
+rrdrdrUlldLLLLLLuluRRurDrrruLLL
+ASTAR
+Steps: 31, Weight: 76, Node: 176431, Time (ms): 3014.24, Memory (MB): 44.00
+rrdrdrUlldLLLLLLuluRRurDrrruLLL
+ASTAR
+Steps: 31, Weight: 76, Node: 176431, Time (ms): 3016.03, Memory (MB): 44.23
+rrdrdrUlldLLLLLLuluRRurDrrruLLL
+ASTAR
+Steps: 31, Weight: 76, Node: 176431, Time (ms): 3013.15, Memory (MB): 44.01
+rrdrdrUlldLLLLLLuluRRurDrrruLLL
+ASTAR
+Steps: 31, Weight: 76, Node: 176431, Time (ms): 3013.44, Memory (MB): 43.55
+rrdrdrUlldLLLLLLuluRRurDrrruLLL

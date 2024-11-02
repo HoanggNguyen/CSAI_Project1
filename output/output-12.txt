@@ -1,3 +1,0 @@
-ASTAR
-Steps: 54, Weight: 278, Node: 55176, Time (ms): 3010.38, Memory (MB): 16.78
-llluuuurrRlluurrrdrddlUUruLLrddllllllllLruulldDDDDldRR

@@ -72,38 +72,6 @@ def draw_buttons(screen, paused, run_all_pressed):
         # Blit text onto the button image
         screen.blit(text, text_rect)
 
-
-
-# Hàm xử lý sự kiện cho các nút và trả về speed mới
-def handle_buttons(screen, speed, paused, run_all_pressed):
-    WIDTH, HEIGHT = screen.get_size()
-    BUTTON_WIDTH, BUTTON_HEIGHT = 100, 30
-    BUTTON_X = WIDTH - BUTTON_WIDTH - 20  # Right margin
-
-    # Button Y positions based on the updated layout
-    back_y = 15 + BUTTON_HEIGHT + 10  # Back button Y position
-    speed_up_y = back_y + BUTTON_HEIGHT + 10  # Speed Up button Y position
-
-    # Lắng nghe sự kiện nút nhấn
-    for event in pygame.event.get():
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            x, y = event.pos
-            # Kiểm tra nút "Speed up" có được nhấn không
-            if BUTTON_X <= x <= BUTTON_X + BUTTON_WIDTH:
-                # Check for the Speed Up button click
-                if speed_up_y <= y <= speed_up_y + BUTTON_HEIGHT:
-                    speed += 1  # Increase speed value when the button is clicked
-
-                # Check for the Back button click
-                elif 15 <= y <= 15 + BUTTON_HEIGHT:
-                    # Handle the back action (not implemented here)
-                    pass
-
-    # Gọi hàm draw_buttons và trả về giá trị speed mới
-    draw_buttons(screen, paused, run_all_pressed)
-    return speed
-
-
 # Global stop signal for the loading screen
 loading_screen_running = True
 
@@ -208,7 +176,6 @@ def testcase_selection_screen(screen, state, background_image, button_img, light
                     break
 
     return selected_testcase, current_screen, True
-
 
 def algorithm_selection_screen(screen, state, background_image, button_img, light_button_image):
     WIDTH, HEIGHT = 480, 720
@@ -322,7 +289,6 @@ def algorithm_selection_screen(screen, state, background_image, button_img, ligh
 
     return selected_algo, next_screen, True
 
-
 def display_no_solution(screen):
     """Display 'No Solution' message in the center of the screen."""
     # Get screen dimensions
@@ -345,8 +311,8 @@ def display_no_solution(screen):
     screen.blit(no_solution_text, no_solution_rect)
     pygame.display.flip()  # Update the display
 
-
 screen_width, screen_height = 480, 720
+
 def draw_menu(screen, current_screen):
     """Function to draw the main menu on the given screen."""
     # Load fonts and setup font size for buttons
@@ -436,7 +402,6 @@ dict2 = {
 def game_screen(sc,state, test_case, algorithm):
     clock = pygame.time.Clock()
 
-
     #Lấy test_case
     input_num = test_case[6:]
     file = "input-"+ input_num +".txt"
@@ -452,6 +417,8 @@ def game_screen(sc,state, test_case, algorithm):
     background_image3 = pygame.transform.scale(background_image2, RES)
     sc.blit(background_image3, (0, 0))
     pygame.display.flip()
+
+    restart_sc = sc
 
     # Khởi tạo SearchSpace với weights, maze_data, COLS và ROWS
     g = SearchSpace(weights, maze_data, cols, rows)
@@ -548,12 +515,12 @@ def game_screen(sc,state, test_case, algorithm):
         sc.blit(background_image3, (0, 0))
 
         # Draw buttons
-        speed = handle_buttons(sc,speed, paused, run_all_pressed)
+        draw_buttons(sc, paused, run_all_pressed)
         draw_info(sc, step_count, timespent, g.ares_weight, g.ares_cost, total_step,speed)
         
         g.draw(sc)
 
-          # Truyền trạng thái run_all_pressed vào hàm draw_buttons
+        # Truyền trạng thái run_all_pressed vào hàm draw_buttons
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -562,8 +529,12 @@ def game_screen(sc,state, test_case, algorithm):
             
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 x, y = event.pos
+
                 BUTTON_WIDTH, BUTTON_HEIGHT = 100, 30
                 BUTTON_X = sc.get_width() - BUTTON_WIDTH - 20  # Right margin
+
+                back_y = 15 + BUTTON_HEIGHT + 10  # Back button Y position
+                speed_up_y = back_y + BUTTON_HEIGHT + 10  # Speed Up button Y position
                 
                 # Check button areas
                 if BUTTON_X <= x <= BUTTON_X + BUTTON_WIDTH:  # Check button area based on BUTTON_X position
@@ -572,15 +543,21 @@ def game_screen(sc,state, test_case, algorithm):
                         running, paused = True, False
                         run_all_pressed = True  # Mark Run All button as pressed
 
+                    # Speed Up Button (blue)
+                    if speed_up_y <= y <= speed_up_y + BUTTON_HEIGHT:
+                        speed += 1  # Increase speed value when the button is clicked
+                        draw_buttons(sc, paused, run_all_pressed)
+
                     # Restart Button (pink)
                     elif HEIGHT - 140 <= y <= HEIGHT - 140 + BUTTON_HEIGHT:
                         running = False
+                        running_game = True
                         current_step = 0
                         step_count = 0
+                        speed = 1
                         g = SearchSpace(weights, maze_data, cols, rows)
-                        g.draw(sc)  # Redraw maze after reset
-                        run_all_pressed = False  # Reset Run All button state
-                        speed = 1  # Reset speed
+                        g.draw(restart_sc)  # Redraw maze after reset
+                        run_all_pressed = False
 
                     # Next Step Button (yellow)
                     elif HEIGHT - 100 <= y <= HEIGHT - 100 + BUTTON_HEIGHT:
@@ -609,6 +586,7 @@ def game_screen(sc,state, test_case, algorithm):
                     current_screen = "algorithm"  # Set screen to return to algorithm
                     running_game = False  # Exit the game loop
                     running_menu = True  # Set menu state
+                    running = False
 
         if running and not paused:
             if current_step < len(steps):

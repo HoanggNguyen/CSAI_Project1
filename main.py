@@ -1,5 +1,6 @@
 from display import *
 from algos import *
+
 def main():
     pygame.init()  # Set up the screen
     pygame.font.init()

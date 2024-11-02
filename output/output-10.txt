@@ -1,6 +1,0 @@
-BFS
-No solution found
-DFS
-No solution found
-UCS
-No solution found

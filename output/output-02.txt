@@ -1,6 +1,39 @@
-BFS
-Steps: 13, Weight: 40, Node: 6978, Time (ms): 3002.79, Memory (MB): 2.00
+DFS
+Steps: 121, Weight: 104, Node: 37486, Time (ms): 1002.20, Memory (MB): 3.23
+rrdllLrrrdllllluRRRRlllldrrrrrUllllluurrrrrDlllulldRldrrrrdrUlllllururrrrDllulDrrrullllldrdldrrrrrUlldlllurRlldrrrrrululD
+ASTAR
+Steps: 13, Weight: 40, Node: 556, Time (ms): 1002.59, Memory (MB): 0.00
 lDldRulluRRRR
-UCS
-Steps: 13, Weight: 40, Node: 10314, Time (ms): 3002.70, Memory (MB): 2.00
-lDldRluluRRRR
+ASTAR
+Steps: 13, Weight: 40, Node: 556, Time (ms): 2003.14, Memory (MB): 0.00
+lDldRulluRRRR
+ASTAR
+Steps: 13, Weight: 40, Node: 556, Time (ms): 1002.16, Memory (MB): 0.02
+lDldRulluRRRR
+ASTAR
+Steps: 13, Weight: 40, Node: 556, Time (ms): 1002.34, Memory (MB): 0.00
+lDldRulluRRRR
+ASTAR
+Steps: 13, Weight: 40, Node: 556, Time (ms): 1003.13, Memory (MB): 0.00
+lDldRulluRRRR
+ASTAR
+Steps: 13, Weight: 40, Node: 556, Time (ms): 1002.21, Memory (MB): 0.00
+lDldRulluRRRR
+ASTAR
+Steps: 13, Weight: 40, Node: 556, Time (ms): 1002.41, Memory (MB): 0.00
+lDldRulluRRRR
+ASTAR
+Steps: 13, Weight: 40, Node: 556, Time (ms): 1003.37, Memory (MB): 0.00
+lDldRulluRRRR
+ASTAR
+Steps: 13, Weight: 40, Node: 556, Time (ms): 1002.26, Memory (MB): 0.00
+lDldRulluRRRR
+ASTAR
+Steps: 13, Weight: 40, Node: 556, Time (ms): 2003.27, Memory (MB): 0.00
+lDldRulluRRRR
+ASTAR
+Steps: 13, Weight: 40, Node: 556, Time (ms): 1003.15, Memory (MB): 0.00
+lDldRulluRRRR
+ASTAR
+Steps: 13, Weight: 40, Node: 556, Time (ms): 1002.23, Memory (MB): 0.00
+lDldRulluRRRR
