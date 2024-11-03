@@ -473,25 +473,29 @@ def game_screen(sc,state, test_case, algorithm):
         
         dict = load_results_from_json('./output-restored/results.json')
         # BFS
-        steps = dict[input_num][0][0]   
-        timespent = dict[input_num][0][1]
-        costs = dict[input_num][0][2]
-        total_step = dict[input_num][0][3]
+        if algorithm == "BFS":
+            steps = dict[input_num][0][0]   
+            timespent = dict[input_num][0][1]
+            costs = dict[input_num][0][2]
+            total_step = dict[input_num][0][3]
         # DFS
-        steps = dict[input_num][1][0]
-        timespent = dict[input_num][1][1]
-        costs = dict[input_num][1][2]
-        total_step = dict[input_num][1][3]
+        elif algorithm == "DFS":
+            steps = dict[input_num][1][0]
+            timespent = dict[input_num][1][1]
+            costs = dict[input_num][1][2]
+            total_step = dict[input_num][1][3]
         #UCS
-        steps = dict[input_num][2][0]
-        timespent = dict[input_num][2][1]
-        costs = dict[input_num][2][2]
-        total_step = dict[input_num][2][3]
+        elif algorithm == "UCS":
+            steps = dict[input_num][2][0]
+            timespent = dict[input_num][2][1]
+            costs = dict[input_num][2][2]
+            total_step = dict[input_num][2][3]
         #ASTAR
-        steps = dict[input_num][3][0]
-        timespent = dict[input_num][3][1]
-        costs = dict[input_num][3][2]
-        total_step = dict[input_num][3][3]
+        elif algorithm == "ASTAR":
+            steps = dict[input_num][3][0]
+            timespent = dict[input_num][3][1]
+            costs = dict[input_num][3][2]
+            total_step = dict[input_num][3][3]
     if steps is None:
         display_no_solution(sc)  # Show 'No Solution' message
         pygame.time.delay(1800)
