@@ -1,6 +1,0 @@
-ASTAR
-Steps: 24, Weight: 40, Node: 1938, Time (ms): 2003.20, Memory (MB): 0.00
-rrrrrrrurDldRRRRllUUluRR
-UCS
-Steps: 24, Weight: 40, Node: 43060, Time (ms): 1002.23, Memory (MB): 10.06
-rrrrrrrurDldRRRRllUUluRR

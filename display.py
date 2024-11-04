@@ -99,6 +99,9 @@ def testcase_selection_screen(screen, state, background_image, button_img, light
     # Vị trí của nút Back
     back_button_x = MARGIN  # 30 pixels từ bên trái
     back_button_y = HEIGHT - BUTTON_HEIGHT - MARGIN  # 30 pixels từ bên dưới
+    # Vị trí của nút More
+    more_button_x = WIDTH - MARGIN - BUTTON_WIDTH  # 30 pixels từ bên phải
+    more_button_y = HEIGHT - BUTTON_HEIGHT - MARGIN  # 30 pixels từ bên dưới
 
     # Khởi tạo danh sách các nút
     buttons = []
@@ -153,6 +156,15 @@ def testcase_selection_screen(screen, state, background_image, button_img, light
         label_rect = label.get_rect(center=back_button_rect.center)
         screen.blit(label, label_rect)
 
+        # Vẽ nút More input
+        more_button_rect = pygame.Rect(more_button_x, more_button_y, BUTTON_WIDTH , BUTTON_HEIGHT)
+        scaled_more_button_img = pygame.transform.scale(light_button_image if more_button_rect.collidepoint(pygame.mouse.get_pos()) else button_img, (BUTTON_WIDTH , BUTTON_HEIGHT))
+        screen.blit(scaled_more_button_img, more_button_rect.topleft)
+        
+        label2 = button_font.render("More Input", True, WHITE)
+        label_rect2 = label2.get_rect(center=more_button_rect.center)
+        screen.blit(label2, label_rect2)
+
         pygame.display.flip()
 
         # Xử lý sự kiện
@@ -174,8 +186,130 @@ def testcase_selection_screen(screen, state, background_image, button_img, light
                     current_screen = "menu"
                     running = False
                     break
+                # Kiểm tra nhấp chuột vào nút more
+                if more_button_rect.collidepoint(mouse_pos):
+                    current_screen = "test_case2"
+                    running = False
+                    break
 
     return selected_testcase, current_screen, True
+
+
+def testcase_selection_screen2(screen, state, background_image, button_img, light_button_image):
+    WIDTH, HEIGHT = 480, 720
+
+    BUTTON_WIDTH, BUTTON_HEIGHT = 140, 50  # Adjusted size of the buttons
+    MARGIN = 30  # Margin on each side
+    BUTTON_GAP = 30  # Minimum gap between buttons
+    
+    #screen = pygame.display.set_mode((480, 720))
+    # Load button images
+    button_img.convert_alpha()
+    light_button_image.convert_alpha()
+    
+    # Calculate button positions based on margins and gaps
+    start_y = 250  # Starting Y position for main buttons
+
+    buttons = [
+        {"label": "INPUT 13", "y": start_y},
+        {"label": "INPUT 14", "y": start_y + BUTTON_HEIGHT + BUTTON_GAP},
+        {"label": "INPUT 15", "y": start_y + 2 * (BUTTON_HEIGHT + BUTTON_GAP)},
+        {"label": "INPUT 16", "y": start_y + 3 * (BUTTON_HEIGHT + BUTTON_GAP)},
+    ]
+
+    # Centering buttons
+    for button in buttons:
+        button["x"] = (WIDTH - BUTTON_WIDTH) // 2  # Center X position for buttons
+
+    # Back button position
+    back_button_x = MARGIN  # 30 pixels from the left
+    back_button_y = HEIGHT - BUTTON_HEIGHT - MARGIN   # 30 pixels from the bottom
+
+    
+    selected_testcase = None
+    running = True
+    next_screen = "algorithm"
+    # Cài đặt font
+    font_path = "./Fonts/Quantico-Bold.ttf"
+    font_path2 = "./Fonts/Quantico-Bold.ttf"
+    button_font = pygame.font.Font(font_path2, 22)  # Font cho các nút
+    title_font = pygame.font.Font(font_path2, 42)  # Font tiêu đề
+    sub_font = pygame.font.Font(font_path, 26)
+    sub_font2 = pygame.font.Font(font_path, 16)
+    selected_testcase = None
+    running = True
+
+    while running:
+        # Vẽ hình nền
+        screen.blit(background_image, (0, 0))
+
+        # Tiêu đề và phụ đề màn hình
+        screen_title = "New Adventure" if state == "new" else "Review Journey"
+        screen_subtitle = "Pick Map Carefully!!!"
+        screen_subtitle2 = "You Could Strike Gold or Stumble into Trouble!"
+
+        # Vẽ tiêu đề và phụ đề
+        title_text = sub_font.render(screen_title, True, (44, 61, 88))
+        sub_text = title_font.render(screen_subtitle, True, (44, 61, 88))
+        sub_text2 = sub_font2.render(screen_subtitle2, True, (44, 61, 88))
+
+        screen.blit(title_text, (WIDTH // 2 - title_text.get_width() // 2, 50))
+        screen.blit(sub_text, (WIDTH // 2 - sub_text.get_width() // 2, 90))
+        screen.blit(sub_text2, (WIDTH // 2 - sub_text2.get_width() // 2, 160))
+
+        # Draw main buttons
+        for button in buttons:
+            rect = pygame.Rect(button["x"], button["y"], BUTTON_WIDTH, BUTTON_HEIGHT)
+
+            if rect.collidepoint(pygame.mouse.get_pos()):
+                button_to_draw = pygame.transform.scale(light_button_image, (BUTTON_WIDTH, BUTTON_HEIGHT))
+
+            else:
+                button_to_draw = pygame.transform.scale(button_img, (BUTTON_WIDTH, BUTTON_HEIGHT))
+
+            screen.blit(button_to_draw, rect.topleft)
+
+            text = button_font.render(button["label"], True, (255, 255, 255))
+            text_rect = text.get_rect(center=rect.center)
+            screen.blit(text, text_rect)
+
+        # Draw Back button
+        back_button_rect = pygame.Rect(back_button_x, back_button_y, BUTTON_WIDTH/2, BUTTON_HEIGHT)
+        
+        # Scale the back button image to fit the new width
+        scaled_back_button_img = pygame.transform.scale(button_img, (BUTTON_WIDTH/2, BUTTON_HEIGHT))
+
+        if back_button_rect.collidepoint(pygame.mouse.get_pos()):
+            scaled_back_button_img = pygame.transform.scale(light_button_image, (BUTTON_WIDTH/2, BUTTON_HEIGHT))
+
+        screen.blit(scaled_back_button_img, back_button_rect.topleft)
+
+        label = button_font.render("Back", True, (255, 255, 255))
+        label_rect = label.get_rect(center=back_button_rect.center)
+        screen.blit(label, label_rect)
+
+        pygame.display.flip()
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                return None, None, False
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_x, mouse_y = event.pos
+                for button in buttons:
+                    if (button["x"] <= mouse_x <= button["x"] + BUTTON_WIDTH and
+                            button["y"] <= mouse_y <= button["y"] + BUTTON_HEIGHT):
+                        selected_testcase = button["label"]
+                        running = False
+                        break
+                if (back_button_rect.x <= mouse_x <= back_button_rect.x + back_button_rect.width and
+                        back_button_rect.y <= mouse_y <= back_button_rect.y + back_button_rect.height):
+                    next_screen = "test_case"
+                    running = False
+                    break
+
+    return selected_testcase, next_screen, True
+
 
 def algorithm_selection_screen(screen, state, background_image, button_img, light_button_image):
     WIDTH, HEIGHT = 480, 720
@@ -396,7 +530,11 @@ dict2 = {
     "09": [[],[],[],[]],
     "10": [[],[],[],[]],
     "11": [[],[],[],[]],
-    "12": [[],[],[],[]]
+    "12": [[],[],[],[]],
+    "13": [[],[],[],[]],
+    "14": [[],[],[],[]],
+    "15": [[],[],[],[]],
+    "16": [[],[],[],[]]
 }
 
 def game_screen(sc,state, test_case, algorithm):

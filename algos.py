@@ -24,7 +24,7 @@ def BFS(grid, ares_start, stones, switches):
         state_signature = (current_state.ares_pos, tuple(stone[:2] for stone in current_state.stones))
 
         # Only expand this state if it's the lowest-cost instance seen so far
-        if state_signature in closed_set and closed_set[state_signature] <= current_state.cost:
+        if state_signature in closed_set: #and closed_set[state_signature] <= current_state.cost:
             continue
         closed_set[state_signature] = current_state.cost  # Store the cost of this state
 

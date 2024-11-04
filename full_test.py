@@ -1,21 +1,28 @@
 from support import *
 from algos import BFS,DFS,UCS, ASTAR
 import json
+from os import environ
+environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1'
+
 
 # Dictionary to hold results for each input case
 dict = {
-    "01": [[], [], [], []],
-    "02": [[], [], [], []],
-    "03": [[], [], [], []],
-    "04": [[], [], [], []],
-    "05": [[], [], [], []],
-    "06": [[], [], [], []],
-    "07": [[], [], [], []],
-    "08": [[], [], [], []],
-    "09": [[], [], [], []],
-    "10": [[], [], [], []],
-    "11": [[], [], [], []],
-    "12": [[], [], [], []]
+    "01": [[],[],[],[]],
+    "02": [[],[],[],[]],
+    "03": [[],[],[],[]],
+    "04": [[],[],[],[]],
+    "05": [[],[],[],[]],
+    "06": [[],[],[],[]],
+    "07": [[],[],[],[]],
+    "08": [[],[],[],[]],
+    "09": [[],[],[],[]],
+    "10": [[],[],[],[]],
+    "11": [[],[],[],[]],
+    "12": [[],[],[],[]],
+    "13": [[],[],[],[]],
+    "14": [[],[],[],[]],
+    "15": [[],[],[],[]],
+    "16": [[],[],[],[]]
 }
 
 def save_results_to_json(file_path, data):
@@ -23,7 +30,7 @@ def save_results_to_json(file_path, data):
         json.dump(data, json_file)
 
 # List of input cases
-input_numbers = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]
+input_numbers = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16"]
 folder_path = './input'  # Folder containing input files
 
 def output2(algo, input_path, output_path):
@@ -72,12 +79,9 @@ def output2(algo, input_path, output_path):
             file.write(f"Steps: {len(steps)}, Weight: {weight -  len(steps)}, Node: {node}, Time (ms): {total_time:.2f}, Memory (MB): {usage:.2f}\n")
             file.write(steps + "\n")
             # print
-            print(f"{algo.__name__}\n")
-            print(f"Steps: {len(steps)}, Weight: {weight -  len(steps)}, Node: {node}, Time (ms): {total_time:.2f}, Memory (MB): {usage:.2f}\n")
-            print(steps + "\n")
+            print(f"{input_path[15:16]},{algo.__name__}, {len(steps)}, {weight -  len(steps)},{node}, {total_time:.2f}, {usage:.2f}, {steps}")
         else:
-            print(algo.__name__)
-            print("No solution found")
+            print(f"{input_path[15:16]},{algo.__name__}, , , , , , No solution found")
             file.write(f"{algo.__name__}\n")
             file.write("No solution found\n")
             return [], None, None, None

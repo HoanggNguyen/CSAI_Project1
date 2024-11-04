@@ -224,6 +224,10 @@ def output(sc,algo, input_path, output_path):
             file.write(f"{algo.__name__}\n")
             file.write(f"Steps: {len(steps)}, Weight: {weight -  len(steps)}, Node: {node}, Time (ms): {total_time:.2f}, Memory (MB): {usage:.2f}\n")
             file.write(steps + "\n")
+            # print
+            print(f"{algo.__name__}\n")
+            print(f"Steps: {len(steps)}, Weight: {weight -  len(steps)}, Node: {node}, Time (ms): {total_time:.2f}, Memory (MB): {usage:.2f}\n")
+            print(steps + "\n")
         else:
             print(algo.__name__)
             print("No solution found")
