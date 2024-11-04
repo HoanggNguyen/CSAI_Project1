@@ -328,7 +328,7 @@ def algorithm_selection_screen(screen, state, background_image, button_img, ligh
 
     buttons = [
         {"label": "BFS", "algo": "BFS", "y": start_y},
-        {"label": "DFS", "algo": "DFS", "y": start_y + BUTTON_HEIGHT + BUTTON_GAP},
+        {"label": "IDDFS", "algo": "IDDFS", "y": start_y + BUTTON_HEIGHT + BUTTON_GAP},
         {"label": "UCS", "algo": "UCS", "y": start_y + 2 * (BUTTON_HEIGHT + BUTTON_GAP)},
         {"label": "A*", "algo": "ASTAR", "y": start_y + 3 * (BUTTON_HEIGHT + BUTTON_GAP)},
     ]
@@ -538,8 +538,9 @@ dict2 = {
 }
 
 def game_screen(sc,state, test_case, algorithm):
+    
     clock = pygame.time.Clock()
-
+    
     #Lấy test_case
     input_num = test_case[6:]
     file = "input-"+ input_num +".txt"
@@ -576,11 +577,11 @@ def game_screen(sc,state, test_case, algorithm):
             timespent = dict2[input_num][0][1]
             costs = dict2[input_num][0][2]
             total_step = dict2[input_num][0][3]
-        elif algorithm == "DFS" and len(dict2[input_num][1]) == 0:
-            costs, steps, timespent, total_step = output(sc,DFS, input_path=file_path, output_path='./output/output-'+input_num+'.txt')
+        elif algorithm == "IDDFS" and len(dict2[input_num][1]) == 0:
+            costs, steps, timespent, total_step = output(sc,IDDFS, input_path=file_path, output_path='./output/output-'+input_num+'.txt')
             costs = [0] + costs
             dict2[input_num][1] = [steps, timespent, costs, total_step]
-        elif algorithm == "DFS":
+        elif algorithm == "IDDFS":
             steps = dict2[input_num][1][0]
             timespent = dict2[input_num][1][1]
             costs = dict2[input_num][1][2]
@@ -616,8 +617,8 @@ def game_screen(sc,state, test_case, algorithm):
             timespent = dict[input_num][0][1]
             costs = dict[input_num][0][2]
             total_step = dict[input_num][0][3]
-        # DFS
-        elif algorithm == "DFS":
+        # IDDFS
+        elif algorithm == "IDDFS":
             steps = dict[input_num][1][0]
             timespent = dict[input_num][1][1]
             costs = dict[input_num][1][2]

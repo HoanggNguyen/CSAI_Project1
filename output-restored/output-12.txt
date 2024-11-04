@@ -1,11 +1,12 @@
 BFS
-Steps: 42, Weight: 308, Node: 368017, Time (ms): 7866.48, Memory (MB): 37.00
+Steps: 42, Weight: 308, Node: 339360, Time (ms): 4524.30, Memory (MB): 30.00
 uuruuLLLullddrUUluRRddlllllLruulldDDDDldRR
-DFS
-No solution found
+IDDFS
+Steps: 224, Weight: 278, Node: 1173232, Time (ms): 12122.25, Memory (MB): 29.59
+llllurullllllldrrrdlldrdlllllurulurulururrrulurrrrdldrrrrrrRlllllllLrurulllldrDDDrrrrrrdldrrrrulurrrrullUlllllllllllllldrdldrdldrdrrrrulurrululldRldrrruurrrrdldrrrrulurrrrulluUrrulLLrrrdlldrrdlldlldrdllllurullllllldrRllurrrD
 UCS
-Steps: 54, Weight: 278, Node: 472483, Time (ms): 11260.41, Memory (MB): 16.01
+Steps: 54, Weight: 278, Node: 472483, Time (ms): 6257.31, Memory (MB): 16.09
 llluuuurrRlllllllLruulldDDDldRRurDurrrrddrrururuUUruLL
 ASTAR
-Steps: 54, Weight: 278, Node: 55176, Time (ms): 2602.08, Memory (MB): 0.02
+Steps: 54, Weight: 278, Node: 55176, Time (ms): 1458.59, Memory (MB): 1.00
 llluuuurrRlluurrrdrddlUUruLLrddllllllllLruulldDDDDldRR

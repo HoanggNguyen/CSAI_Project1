@@ -33,9 +33,6 @@ def main():
             running = False
 
         pygame.display.flip()
-
-    pygame.quit()
-
     pygame.quit()
 if __name__ == '__main__':
     main()

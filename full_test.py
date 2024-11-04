@@ -1,5 +1,5 @@
 from support import *
-from algos import BFS,DFS,UCS, ASTAR
+from algos import BFS,DFS,UCS, ASTAR, IDDFS 
 import json
 from os import environ
 environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1'
@@ -31,7 +31,9 @@ def save_results_to_json(file_path, data):
 
 # List of input cases
 input_numbers = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16"]
+#input_numbers = ["16"]
 folder_path = './input'  # Folder containing input files
+
 
 def output2(algo, input_path, output_path):
     grid, ares_start, stones, switches, weights = createMatrix(input_path)
@@ -79,9 +81,9 @@ def output2(algo, input_path, output_path):
             file.write(f"Steps: {len(steps)}, Weight: {weight -  len(steps)}, Node: {node}, Time (ms): {total_time:.2f}, Memory (MB): {usage:.2f}\n")
             file.write(steps + "\n")
             # print
-            print(f"{input_path[15:16]},{algo.__name__}, {len(steps)}, {weight -  len(steps)},{node}, {total_time:.2f}, {usage:.2f}, {steps}")
+            print(f"{input_path[14:16]},{algo.__name__}, {len(steps)}, {weight -  len(steps)},{node}, {total_time:.2f}, {usage:.2f}, {steps}")
         else:
-            print(f"{input_path[15:16]},{algo.__name__}, , , , , , No solution found")
+            print(f"{input_path[14:16]},{algo.__name__}, , , , , , No solution found")
             file.write(f"{algo.__name__}\n")
             file.write("No solution found\n")
             return [], None, None, None
@@ -96,22 +98,22 @@ def main():
         file_path = f"{folder_path}/{file_name}"
 
         # BFS
-        costs, steps, timespent, total_step = output2(BFS, input_path=file_path, output_path='./output-restored/output-'+input+'.txt')
+        costs, steps, timespent, total_step = output2(BFS, input_path=file_path, output_path='./output-restored-test/output-'+input+'.txt')
         costs = [0] + costs
         dict[input][0] = [steps, timespent, costs, total_step]
-        # DFS
-        costs, steps, timespent, total_step = output2(DFS, input_path=file_path, output_path='./output-restored/output-'+input+'.txt')
+        # IDDFS
+        costs, steps, timespent, total_step = output2(IDDFS, input_path=file_path, output_path='./output-restored-test/output-'+input+'.txt')
         costs = [0] + costs
         dict[input][1] = [steps, timespent, costs, total_step]
         # UCS
-        costs, steps, timespent, total_step = output2(UCS, input_path=file_path, output_path='./output-restored/output-'+input+'.txt')
+        costs, steps, timespent, total_step = output2(UCS, input_path=file_path, output_path='./output-restored-test/output-'+input+'.txt')
         costs = [0] + costs
         dict[input][2] = [steps, timespent, costs, total_step]
         # ASTAR
-        costs, steps, timespent, total_step = output2(ASTAR, input_path=file_path, output_path='./output-restored/output-'+input+'.txt')
+        costs, steps, timespent, total_step = output2(ASTAR, input_path=file_path, output_path='./output-restored-test/output-'+input+'.txt')
         costs = [0] + costs
         dict[input][3] = [steps, timespent, costs, total_step]
-    save_results_to_json('./output-restored/results.json', dict)
+    save_results_to_json('./output-restored-test/results.json', dict)
 
 
 

@@ -178,6 +178,73 @@ def DFS(grid, ares_start, stones, switches, max_depth=333):
         return expanded_node, trace_path(best_solution)
     return None
 
+def IDDFS(grid, ares_start, stones, switches):
+    start_state = State(ares_start, stones, 0)
+    area = len(grid) * len(grid[0])
+    max_depth = area / 2 * len(stones)
+    expanded_node = 0
+    best_solution = None
+
+    while True:
+        current_depth_limit = max_depth
+        max_depth += max(len(grid), len(grid[0]))
+        stack = [(start_state, 0)]  # Reset stack with initial state
+        closed_set = set()  # Reset closed_set for each depth iteration
+
+        solution_found = False
+
+        while stack:
+            current_state, depth = stack.pop()
+
+            if check_goal(current_state.stones, switches):
+                if best_solution is None or current_state.cost < best_solution.cost:
+                    best_solution = current_state
+                solution_found = True
+                break
+
+            if depth > current_depth_limit:
+                continue
+
+            closed_set.add((current_state.ares_pos, tuple(stone[:2] for stone in current_state.stones)))
+
+            for i, stone_pos in enumerate(current_state.stones):
+                for dir in DIRECTIONS:
+                    new_ares_pos = (current_state.ares_pos[0] + dir[0], current_state.ares_pos[1] + dir[1])
+
+                    if is_valid_move(grid, new_ares_pos[0], new_ares_pos[1], current_state.stones):
+                        new_stones = current_state.stones.copy()
+                        new_state = State(new_ares_pos, new_stones, current_state.cost + 1, current_state)
+                        
+                        if (new_state.ares_pos, tuple(stone[:2] for stone in new_state.stones)) not in closed_set:
+                            stack.append((new_state, depth + 1))
+                            expanded_node += 1
+
+                    if stone_pos[:2] == new_ares_pos:
+                        new_stone_pos = (stone_pos[0] + dir[0], stone_pos[1] + dir[1])
+                        
+                        if is_valid_push(grid, stone_pos, dir, new_stone_pos, current_state.ares_pos, current_state.stones):
+                            new_stones = current_state.stones.copy()
+                            new_stones[i] = (new_stone_pos[0], new_stone_pos[1], stone_pos[2])
+                            push_cost = stone_pos[2] + 1
+                            new_state = State(new_ares_pos, new_stones, current_state.cost + push_cost, current_state)
+                            
+                            if (new_state.ares_pos, tuple(stone[:2] for stone in new_state.stones)) not in closed_set:
+                                stack.append((new_state, depth + 1))
+                                expanded_node += 1
+
+                                if new_stone_pos in switches:
+                                    break
+
+        if solution_found:
+            return expanded_node, trace_path(best_solution)
+        
+        # If max depth grows beyond a reasonable threshold, assume no solution exists
+        if max_depth > area * len(stones) * 2:
+            break
+
+    return None  # Return None if no solution is found
+
+
 def UCS(grid, start_pos, stones, switches):
     PQ = []
     heapq.heappush(PQ, (0, start_pos, tuple(stones), None))

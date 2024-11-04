@@ -1,0 +1,12 @@
+BFS
+Steps: 18, Weight: 489, Node: 184265, Time (ms): 2556.39, Memory (MB): 392.06
+lllDRRdrUlllLLdlUU
+IDDFS
+Steps: 126, Weight: 571, Node: 648333, Time (ms): 6582.87, Memory (MB): 107.32
+lllllldrdrrrUrrdllllllururrRRllllldrdrrrrruUlllllldrdrrUrrrdllllllurururrrdlLrrrdllldlllurulurrrrrurDlllllldrdRllurRRDrUruLLLL
+UCS
+Steps: 25, Weight: 382, Node: 3707584, Time (ms): 88038.94, Memory (MB): 1051.52
+lddllUdrUUruLLLLddRuRDuRR
+ASTAR
+Steps: 25, Weight: 382, Node: 1177068, Time (ms): 33736.28, Memory (MB): 429.20
+dldlUdlUrUruLLLLddRuRDuRR

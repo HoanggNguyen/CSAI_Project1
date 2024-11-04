@@ -174,6 +174,9 @@ def stop_loading_screen(loading_thread):
     loading_screen_running = False
     loading_thread.join()
 def output(sc,algo, input_path, output_path):
+    
+    pygame.font.init()
+    pygame.event.get()
     # Đọc dữ liệu từ file đầu vào và khởi tạo trạng thái
     grid, ares_start, stones, switches, weights = createMatrix(input_path)
     # Thêm trọng số cho vị trí đá

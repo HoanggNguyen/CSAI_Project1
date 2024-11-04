@@ -1,6 +1,6 @@
 BFS
 No solution found
-DFS
+IDDFS
 No solution found
 UCS
 No solution found
