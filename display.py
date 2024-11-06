@@ -4,16 +4,16 @@ from algos import *
 import sys
 
 # New functions for button drawing and info display
-def draw_info(screen, step_count, start_time, ares_weight, ares_cost, total_step,speed=1):
+def draw_info(screen, algorithm, input_num, step_count, start_time, ares_weight, ares_cost, total_step,speed=1):
     WIDTH, HEIGHT = screen.get_size()
 
     font = pygame.font.Font(font_path, 18)
-    total_step = font.render(f'Total Steps: {total_step}', True, pygame.Color('white'))
+    total_step = font.render(f'{algorithm}, Input {input_num} - Total Steps: {total_step}', True, pygame.Color('white'))
     time_text = font.render(f'Total Time: {start_time:.2f}ms ~ {start_time/1000:.2f}s', True, pygame.Color('white'))
     current = font.render(f'== Current state == (speed {speed}x)', True, pygame.Color('white'))
     step_text = font.render(f'Steps count: {step_count}, Cost: {ares_cost}, Weight: {ares_weight}', True, pygame.Color('white'))
-    screen.blit(time_text, (10, HEIGHT - 100))
-    screen.blit(total_step, (10, HEIGHT - 80))
+    screen.blit(time_text, (10, HEIGHT - 80))
+    screen.blit(total_step, (10, HEIGHT - 100))
     screen.blit(current, (10, HEIGHT - 60))
     screen.blit(step_text, (10, HEIGHT - 40))
 
@@ -659,7 +659,7 @@ def game_screen(sc,state, test_case, algorithm):
 
         # Draw buttons
         draw_buttons(sc, paused, run_all_pressed)
-        draw_info(sc, step_count, timespent, g.ares_weight, g.ares_cost, total_step,speed)
+        draw_info(sc,algorithm, input_num, step_count, timespent, g.ares_weight, g.ares_cost, total_step,speed)
         
         g.draw(sc)
 
