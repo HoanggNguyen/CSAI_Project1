@@ -3,7 +3,6 @@ from support import *
 from collections import deque
 
 def BFS(grid, ares_start, stones, switches):
-
     open_list = deque()  # Queue for BFS
     closed_set = {}  # Use a dictionary to store minimum costs per state signature
     expanded_nodes = 1
@@ -45,6 +44,7 @@ def BFS(grid, ares_start, stones, switches):
             for i, stone_pos in enumerate(current_state.stones):
                 if stone_pos[:2] == new_ares_pos:  # Ares is adjacent to a stone
                     new_stone_pos = (stone_pos[0] + dir[0], stone_pos[1] + dir[1])
+                    
                     if is_valid_push(grid, stone_pos, dir, new_stone_pos, current_state.ares_pos, current_state.stones):
                         new_stones = current_state.stones.copy()
                         new_stones[i] = (new_stone_pos[0], new_stone_pos[1], stone_pos[2])  # Keep stone's weight
@@ -59,19 +59,20 @@ def BFS(grid, ares_start, stones, switches):
     return None  # Return None if no solution is found
 
 def calculate_h(ares_pos, stones, switches):
-
     h_value = 0
+
     for stone in stones:
         # Minimum distance from stone to the nearest switch
         min_distance = min(abs(stone[0] - switch[0]) + abs(stone[1] - switch[1]) for switch in switches)
         h_value += min_distance * stone[2]  # Weighted distance for stone
         # Add distance from Ares to stone
+        
         if stone[:2] not in switches:
             h_value += abs(stone[0] - ares_pos[0]) + abs(stone[1] - ares_pos[1])
+    
     return h_value
 
 def ASTAR(grid, ares_start, stones, switches):
-
     open_list = []
     closed_set = set()
     expanded_nodes = 1
@@ -100,6 +101,7 @@ def ASTAR(grid, ares_start, stones, switches):
             if is_valid_move(grid, new_ares_pos[0], new_ares_pos[1], current_state.stones):
                 # Create a new state with updated position and cost
                 new_state = State(new_ares_pos, current_state.stones.copy(), current_state.cost + 1, current_state)
+                
                 if (new_state.ares_pos, tuple(stone[:2] for stone in new_state.stones)) not in closed_set:
                     heapq.heappush(open_list, (new_state.cost + calculate_h(new_state.ares_pos, new_state.stones, switches), new_state))
                     expanded_nodes += 1
@@ -108,12 +110,14 @@ def ASTAR(grid, ares_start, stones, switches):
             for i, stone_pos in enumerate(current_state.stones):
                 if stone_pos[:2] == new_ares_pos:  # Ares is adjacent to a stone
                     new_stone_pos = (stone_pos[0] + dir[0], stone_pos[1] + dir[1])
+                    
                     if is_valid_push(grid, stone_pos, dir, new_stone_pos, current_state.ares_pos, current_state.stones):
                         # Update the stone's position while keeping its weight
                         new_stones = current_state.stones.copy()
                         new_stones[i] = (new_stone_pos[0], new_stone_pos[1], stone_pos[2])
                         push_cost = stone_pos[2] + 1  # Cost of moving based on stone's weight
                         new_state = State(new_ares_pos, new_stones, current_state.cost + push_cost, current_state)
+                        
                         if (new_state.ares_pos, tuple(stone[:2] for stone in new_state.stones)) not in closed_set:
                             heapq.heappush(open_list, (new_state.cost + calculate_h(new_state.ares_pos, new_state.stones, switches), new_state))
                             expanded_nodes += 1
@@ -133,9 +137,7 @@ def DFS(grid, ares_start, stones, switches, max_depth=333):
 
         # Check if the current state is the goal state
         if check_goal(current_state.stones, switches):
-            if best_solution is None or current_state.cost < best_solution.cost:
-                best_solution = current_state
-            continue
+            return expanded_node, trace_path(current_state)
 
         # Skip if the depth exceeds the maximum depth
         if depth > max_depth:
@@ -176,6 +178,7 @@ def DFS(grid, ares_start, stones, switches, max_depth=333):
 
     if best_solution:
         return expanded_node, trace_path(best_solution)
+    
     return None
 
 def IDDFS(grid, ares_start, stones, switches):
@@ -243,7 +246,6 @@ def IDDFS(grid, ares_start, stones, switches):
             break
 
     return None  # Return None if no solution is found
-
 
 def UCS(grid, start_pos, stones, switches):
     PQ = []
